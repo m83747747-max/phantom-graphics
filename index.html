@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Graphics | الرئيسية</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+        
+        body {
+            background-image: url('background.png.PNG'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .main-logo {
+            width: 150px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+        }
+
+        .action-button {
+            display: block;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .action-button img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .action-button:hover {
+            transform: scale(1.03);
+            filter: brightness(1.05);
+        }
+
+        .payment-section {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .payment-section p {
+            color: #0047AB;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .payment-img {
+            width: 100%;
+            max-width: 350px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="logo.png.PNG" alt="Phantom Logo" class="main-logo">
+
+        <a href="https://discord.gg/U3jW9U3N3" target="_blank" class="action-button">
+            <img src="design_order.png.PNG" alt="طلب تصميم">
+        </a>
+
+        <a href="https://discord.gg/U3jW9U3N3" target="_blank" class="action-button">
+            <img src="learn_order.png.PNG" alt="طلب تعليم">
+        </a>
+
+        <div class="payment-section">
+            <p>طرق الدفع المعتمدة</p>
+            <img src="payment_methods.png.PNG" class="payment-img" alt="Payments">
+        </div>
+    </div>
+
+</body>
+</html>
