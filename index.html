@@ -3,77 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PhanTom Graphics | المتجر</title>
+    <title>PhanTom Graphics | المتجر الرسمي</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
         :root { --primary-blue: #4a6fff; --main-font: 'Cairo', sans-serif; }
         * { box-sizing: border-box; }
-        body { background-image: url('background.png.PNG'); background-size: cover; background-position: center; background-attachment: fixed; font-family: var(--main-font); margin: 0; padding: 0; direction: rtl; }
+        body { 
+            background-image: url('background.png.PNG'); 
+            background-size: cover; background-position: center; background-attachment: fixed;
+            font-family: var(--main-font); margin: 0; padding: 0; direction: rtl; 
+        }
         
         .header { background: rgba(255,255,255,0.95); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; border-bottom: 1px solid #eee; }
         .header-logo { width: 45px; height: auto; }
 
-        .main-container { width: 100%; max-width: 500px; margin: 80px auto 0; padding: 20px; }
-        .product-card { background: white; border-radius: 20px; padding: 20px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: center; }
-        .product-card img { width: 100%; border-radius: 15px; }
+        .main-container { width: 100%; max-width: 500px; margin: 90px auto 20px; padding: 20px; }
+        .product-card { background: white; border-radius: 25px; padding: 20px; margin-bottom: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); text-align: center; }
+        .product-card img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
 
-        /* تنسيق فورم الطلب */
-        .order-form { text-align: right; margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px; }
-        .form-group { margin-bottom: 10px; }
-        label { font-size: 0.8rem; font-weight: bold; display: block; margin-bottom: 5px; }
-        input, select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd; font-family: var(--main-font); }
-
-        .btn-send { width: 100%; background: var(--primary-blue); color: white; border: none; padding: 15px; border-radius: 12px; cursor: pointer; font-weight: bold; font-family: var(--main-font); margin-top: 15px; }
+        .order-form { text-align: right; border-top: 1px solid #eee; padding-top: 15px; }
+        .form-group { margin-bottom: 12px; }
+        label { font-size: 0.85rem; font-weight: bold; display: block; margin-bottom: 5px; color: #333; }
+        input, select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; font-family: var(--main-font); font-size: 0.9rem; outline: none; }
         
-        /* النجوم */
-        .stars { color: #f1c40f; font-size: 1.5rem; margin: 10px 0; cursor: pointer; }
+        .stars { color: #f1c40f; font-size: 1.8rem; margin: 15px 0; cursor: pointer; display: flex; justify-content: center; gap: 5px; }
+        .btn-send { width: 100%; background: var(--primary-blue); color: white; border: none; padding: 16px; border-radius: 12px; cursor: pointer; font-weight: bold; font-family: var(--main-font); font-size: 1rem; transition: 0.3s; }
+        .btn-send:active { transform: scale(0.98); }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1 style="font-size:1rem; color:var(--primary-blue); margin:0;">PhanTom Graphics</h1>
+        <h1 style="font-size:1.1rem; color:var(--primary-blue); margin:0;">PhanTom Graphics</h1>
         <img src="logo.Png.PNG" class="header-logo">
     </div>
 
     <div class="main-container">
         <div class="product-card">
             <img src="design_order.png.PNG">
-            <h3>طلب تصميم جديد</h3>
+            <h3 style="margin-top:0;">تقديم طلب تصميم</h3>
             
             <div class="order-form">
-                <div class="form-group"><label>اسم السيرفر:</label><input type="text" id="srv-name"></div>
+                <div class="form-group"><label>اسم السيرفر:</label><input type="text" id="srv-name" placeholder="اكتب الاسم هنا"></div>
                 <div class="form-group">
                     <label>نوع التصميم:</label>
                     <select id="srv-type">
                         <option>واقعية</option><option>شوب</option><option>جرافيك</option><option>كود</option><option>أخرى</option>
                     </select>
                 </div>
-                <div class="form-group"><label>اللوقو (ثابت/متحرك):</label><input type="text" id="srv-logo"></div>
-                <div class="form-group"><label>البنر (ثابت/متحرك):</label><input type="text" id="srv-banner"></div>
-                <div class="form-group"><label>الخط (ثابت/متحرك):</label><input type="text" id="srv-font"></div>
-                <div class="form-group"><label>اختصار السيرفر:</label><input type="text" id="srv-short"></div>
+                <div class="form-group"><label>اللوقو:</label><select id="srv-logo"><option>متحرك</option><option>ثابت</option></select></div>
+                <div class="form-group"><label>البنر:</label><select id="srv-banner"><option>متحرك</option><option>ثابت</option></select></div>
+                <div class="form-group"><label>الخط:</label><select id="srv-font"><option>متحرك</option><option>ثابت</option></select></div>
+                <div class="form-group"><label>اختصار السيرفر:</label><input type="text" id="srv-short" placeholder="مثلاً: PT"></div>
             </div>
 
+            <p style="margin-bottom:5px; font-weight:bold; font-size:0.9rem;">تقييمك للمتجر:</p>
             <div class="stars" id="star-box">
                 <span onclick="rate(1)">☆</span><span onclick="rate(2)">☆</span><span onclick="rate(3)">☆</span><span onclick="rate(4)">☆</span><span onclick="rate(5)">☆</span>
             </div>
             
-            <button class="btn-send" onclick="sendToDiscord()">إرسال الطلب للديسكورد 🚀</button>
+            <button class="btn-send" id="submit-btn" onclick="sendToDiscord()">إرسال الطلب للروم 🚀</button>
         </div>
     </div>
 
     <script>
-        const WEBHOOK_URL = "رابط_الويبهوك_هنا"; 
+        // الرابط اللي عطيته لي تم وضعه هنا بنجاح
+        const WEBHOOK_URL = "https://discord.com/api/webhooks/1486873204151685281/5ysQrKoBlgAf2VMejK_rEPf1BFK9jvCChr100hIKxWkG8mq3YKs1sWxWsTbkUfHo6wuq"; 
+        
         let currentRate = 0;
 
         function rate(n) {
             currentRate = n;
             const spans = document.querySelectorAll('#star-box span');
-            spans.forEach((s, i) => s.innerHTML = (i < n) ? '⭐' : '☆');
+            spans.forEach((s, i) => {
+                s.innerHTML = (i < n) ? '⭐' : '☆';
+                s.style.opacity = (i < n) ? '1' : '0.4';
+            });
         }
 
         async function sendToDiscord() {
+            const btn = document.getElementById('submit-btn');
             const data = {
                 server: document.getElementById('srv-name').value,
                 type: document.getElementById('srv-type').value,
@@ -83,39 +92,47 @@
                 short: document.getElementById('srv-short').value
             };
 
-            if(!data.server) return alert('يرجى كتابة اسم السيرفر');
+            if(!data.server) return alert('يا الغالي اكتب اسم السيرفر أولاً!');
 
-            // تجهيز رسالة Embed فخمة للديسكورد
+            btn.disabled = true;
+            btn.innerText = "جاري الإرسال...";
+
             const embedMsg = {
-                username: "PhanTom Orders",
+                content: "@everyone 🔥 **طلب جديد وصل يا فانتوم!**",
                 embeds: [{
-                    title: "طلب تصميم جديد وصل!",
-                    color: 4878335, // لون أزرق
+                    title: "📥 تفاصيل طلب التصميم",
+                    color: 3447003, 
                     fields: [
-                        { name: " اسم السيرفر", value: data.server, inline: true },
-                        { name: " نوع التصميم", value: data.type, inline: true },
-                        { name: " اللوقو", value: data.logo || "غير محدد", inline: true },
-                        { name: " البنر", value: data.banner || "غير محدد", inline: true },
-                        { name: " الخط", value: data.font || "غير محدد", inline: true },
-                        { name: " الاختصار", value: data.short || "غير محدد", inline: true },
-                        { name: " التقييم", value: `${currentRate} نجوم`, inline: false },
-                        { name: "🛠️ إدارة الطلب (الحالات)", value: "🟠 [انتظار الدفع] \n 🔵 [جاري التجهيز] \n 🟢 [تم التسليم]", inline: false }
+                        { name: "🏰 اسم السيرفر", value: `\`${data.server}\``, inline: true },
+                        { name: "🎨 نوع التصميم", value: data.type, inline: true },
+                        { name: "🖼️ اللوقو", value: data.logo, inline: true },
+                        { name: "🚩 البنر", value: data.banner, inline: true },
+                        { name: "✍️ الخط", value: data.font, inline: true },
+                        { name: "🆔 الاختصار", value: data.short || "لا يوجد", inline: true },
+                        { name: "⭐ التقييم المستلم", value: `${currentRate} نجوم`, inline: false }
                     ],
-                    footer: { text: "PhanTom Graphics Store" },
+                    footer: { text: "PhanTom Graphics System" },
                     timestamp: new Date()
                 }]
             };
 
             try {
-                await fetch(WEBHOOK_URL, {
+                const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(embedMsg)
                 });
-                alert('تم إرسال طلبك للسيرفر بنجاح! ✅');
-                window.location.reload(); 
+
+                if(response.ok) {
+                    alert('تم إرسال طلبك للروم بنجاح! شيك على الديسكورد ✅');
+                    window.location.reload();
+                } else {
+                    throw new Error();
+                }
             } catch (e) {
-                alert('خطأ في الإرسال');
+                alert('حدث خطأ في الإرسال، تأكد من اتصالك بالإنترنت');
+                btn.disabled = false;
+                btn.innerText = "إرسال الطلب للروم 🚀";
             }
         }
     </script>
