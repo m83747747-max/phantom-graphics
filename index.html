@@ -3,73 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phantom Graphics | الرئيسية</title>
+    <title>PhanTom Graphics | الرئيسية</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
         
         body {
-            background-image: url('background.png.PNG'); 
+            background-image: url('background.png.PNG'); /* خلفيتك المموجة */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             font-family: 'Cairo', sans-serif;
             margin: 0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             padding: 20px;
             min-height: 100vh;
+            color: #fff;
         }
 
         .container {
+            backdrop-filter: blur(15px); /* تأثير الزجاج */
+            background: rgba(0, 0, 0, 0.4); /* خلفية سوداء شفافة فخمة */
+            padding: 30px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
             width: 100%;
-            max-width: 500px;
+            max-width: 400px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
 
         .main-logo {
-            width: 150px;
+            width: 120px;
             margin-bottom: 20px;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
         }
 
-        .action-button {
-            display: block;
-            margin: 15px 0;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
+        .item-card {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.08); /* شكل البطاقة مثل TXStore */
+            margin: 12px 0;
+            padding: 12px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
         }
 
-        .action-button img {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        .item-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            margin-left: 15px;
+            object-fit: cover;
         }
 
-        .action-button:hover {
-            transform: scale(1.03);
-            filter: brightness(1.05);
+        .item-info {
+            text-align: right;
+            flex-grow: 1;
+        }
+
+        .item-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .item-price {
+            font-size: 0.85em;
+            color: #3498db; /* لون أزرق هادئ للسعر */
+            font-weight: bold;
         }
 
         .payment-section {
-            margin-top: 30px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-top: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px;
+            border-radius: 18px;
         }
 
         .payment-section p {
-            color: #0047AB;
+            color: #1a1a1a;
+            font-size: 0.9em;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin: 0 0 8px 0;
         }
 
         .payment-img {
             width: 100%;
-            max-width: 350px;
+            max-width: 280px;
+            display: block;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -78,13 +104,21 @@
     <div class="container">
         <img src="logo.png.PNG" alt="Phantom Logo" class="main-logo">
 
-        <a href="https://discord.gg/U3jW9U3N3" target="_blank" class="action-button">
-            <img src="design_order.png.PNG" alt="طلب تصميم">
-        </a>
+        <div class="item-card">
+            <img src="design_order.png.PNG" alt="Design">
+            <div class="item-info">
+                <div class="item-title">طلب تصميم</div>
+                <div class="item-price">السعر: على حسب التصميم</div>
+            </div>
+        </div>
 
-        <a href="https://discord.gg/U3jW9U3N3" target="_blank" class="action-button">
-            <img src="learn_order.png.PNG" alt="طلب تعليم">
-        </a>
+        <div class="item-card">
+            <img src="learn_order.png.PNG" alt="Learn">
+            <div class="item-info">
+                <div class="item-title">طلب مبدع</div>
+                <div class="item-price">السعر: يحدد لاحقاً</div>
+            </div>
+        </div>
 
         <div class="payment-section">
             <p>طرق الدفع المعتمدة</p>
