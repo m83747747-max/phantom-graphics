@@ -2,77 +2,81 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PhanTom Graphics | المتجر</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
         
         :root { --primary-blue: #4a6fff; --main-font: 'Cairo', sans-serif; }
 
+        * { box-sizing: border-box; }
+
         body {
             background-image: url('background.png.PNG');
             background-size: cover; background-position: center; background-attachment: fixed;
             font-family: var(--main-font); margin: 0; padding: 0; direction: rtl;
+            scroll-behavior: smooth; overflow-x: hidden; /* منع التوسع الجانبي */
         }
 
-        /* الهيدر: اسم | لوجو بالمنتصف | سلة */
+        /* الهيدر المتجاوب */
         .header {
-            background: rgba(255, 255, 255, 0.9); padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.95); padding: 10px 5%;
             display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
-            position: fixed; top: 0; width: 100%; z-index: 1000; box-sizing: border-box;
-            border-bottom: 1px solid #eee;
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            border-bottom: 1px solid #eee; backdrop-filter: blur(5px);
         }
-
-        .header h1 { font-size: 0.9rem; color: var(--primary-blue); margin: 0; text-align: right; }
-        .header-logo { width: 40px; height: 40px; object-fit: contain; }
-        .cart-wrapper { text-align: left; display: flex; justify-content: flex-end; }
-        .cart-icon { position: relative; cursor: pointer; font-size: 1.3rem; color: #333; }
+        .header h1 { font-size: clamp(0.8rem, 3vw, 1.1rem); color: var(--primary-blue); margin: 0; white-space: nowrap; }
+        .header-logo { width: clamp(35px, 10vw, 50px); height: auto; object-fit: contain; }
+        .cart-wrapper { display: flex; justify-content: flex-end; }
+        .cart-icon { position: relative; cursor: pointer; font-size: 1.4rem; }
         .cart-count {
             position: absolute; top: -5px; right: -10px;
             background: var(--primary-blue); color: white;
             border-radius: 50%; padding: 2px 6px; font-size: 0.7rem;
         }
 
-        .main-container { margin-top: 100px; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        .main-container { width: 100%; max-width: 1200px; margin: 80px auto 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
 
-        /* قسم الترحيب المسترجع */
-        #home-section { text-align: center; color: white; width: 100%; margin-top: 20px; }
-        .welcome-title { 
-            font-size: 1.8rem; font-weight: bold; margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
+        /* قسم الترحيب بملء الشاشة */
+        #home-section { text-align: center; color: white; width: 100%; min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .welcome-title { font-size: clamp(1.5rem, 5vw, 2.5rem); font-weight: bold; margin-bottom: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); padding: 0 10px; }
         .home-btn {
-            display: block; width: 100%; max-width: 280px; background: white; color: var(--primary-blue);
-            border: none; padding: 14px; margin: 12px auto; border-radius: 12px; font-weight: bold; cursor: pointer; text-decoration: none; font-family: var(--main-font);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: block; width: 90%; max-width: 300px; background: white; color: var(--primary-blue);
+            border: none; padding: 15px; margin: 10px auto; border-radius: 12px; font-weight: bold; cursor: pointer; text-decoration: none; font-family: var(--main-font); transition: 0.3s;
         }
+        .home-btn:active { transform: scale(0.95); }
 
-        /* المنتجات عامودية */
-        #products-section { display: none; width: 100%; max-width: 400px; }
+        /* قسم المنتجات العامودي */
+        #products-section { width: 100%; max-width: 450px; padding-top: 60px; }
+        .section-title { color: white; text-align: center; margin-bottom: 30px; font-size: 1.5rem; background: rgba(74, 111, 255, 0.3); padding: 12px; border-radius: 15px; }
         .product-card {
-            background: rgba(255, 255, 255, 0.95); border-radius: 18px; padding: 15px; margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.98); border-radius: 20px; padding: 20px; margin-bottom: 30px;
             display: flex; flex-direction: column; align-items: center; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        .product-card img { width: 100%; border-radius: 12px; margin-bottom: 15px; }
-        .add-btn { background: var(--primary-blue); color: white; border: none; width: 100%; padding: 12px; border-radius: 10px; cursor: pointer; font-family: var(--main-font); font-weight: bold; }
+        .product-card img { width: 100%; height: auto; border-radius: 15px; margin-bottom: 15px; }
+        .add-btn { background: var(--primary-blue); color: white; border: none; width: 100%; padding: 14px; border-radius: 12px; cursor: pointer; font-family: var(--main-font); font-weight: bold; font-size: 1rem; }
 
-        /* النوافذ الاحترافية */
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1100; }
+        /* النوافذ (Popups) المتجاوبة */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1100; }
         #invoice, #rating-popup, #cart-popup {
             display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 85%; max-width: 320px; border-radius: 20px; z-index: 1200; padding: 25px; box-sizing: border-box;
+            width: 90%; max-width: 350px; border-radius: 25px; z-index: 1200; padding: 25px;
         }
-        #invoice { background: #121212; color: white; border: 1px solid #333; }
-        #cart-popup, #rating-popup { background: white; color: #333; }
-        .btn-main { width: 100%; background: var(--primary-blue); border: none; color: white; padding: 12px; border-radius: 10px; cursor: pointer; font-weight: bold; font-family: var(--main-font); margin-top: 10px; }
+        #invoice { background: #000; color: #fff; border: 1px solid #333; }
+        #cart-popup, #rating-popup { background: #fff; color: #333; }
+        .btn-main { width: 100%; background: var(--primary-blue); border: none; color: white; padding: 14px; border-radius: 12px; cursor: pointer; font-weight: bold; font-family: var(--main-font); margin-top: 10px; }
+        
+        /* التقييم (TX Style) */
+        .stars-container { color: #f1c40f; font-size: 2rem; margin: 15px 0; display: flex; justify-content: center; gap: 5px; cursor: pointer; }
+        .opinion-input { width: 100%; height: 100px; border: 1px solid #ddd; border-radius: 12px; padding: 12px; font-family: var(--main-font); margin-top: 10px; font-size: 0.9rem; resize: none; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h1>PhanTom Graphics</h1>
-        <img src="logo.png.PNG" alt="Logo" class="header-logo">
+        <img src="logo.Png.PNG" alt="PhanTom Logo" class="header-logo">
         <div class="cart-wrapper">
             <div class="cart-icon" onclick="openCart()">🛒 <span class="cart-count" id="cart-count">0</span></div>
         </div>
@@ -81,56 +85,59 @@
     <div class="main-container">
         <div id="home-section">
             <div class="welcome-title">مرحباً بك في Phantom Graphics</div>
-            <p style="font-weight: bold;">الأفضل بأرخص الأسعار</p>
-            <button class="home-btn" onclick="showProducts()">تصفح المنتجات</button>
-            <a href="https://discord.gg/U3jW9U3N3" target="_blank" class="home-btn">انضم للديسكورد</a>
+            <p style="font-weight: bold; font-size: 1.1rem; margin-bottom: 20px;">الأفضل بأرخص الأسعار</p>
+            <a href="#products-section" class="home-btn">تصفح المنتجات (تسريع)</a>
+            <a href="https://discord.gg/U3jW9U3N3" target="_blank" class="home-btn" style="background: #5865F2; color: white;">انضم للديسكورد</a>
         </div>
 
         <div id="products-section">
+            <h2 class="section-title">خدماتنا المميزة ⭐</h2>
+            
             <div class="product-card">
                 <img src="design_order.png.PNG" alt="Design">
-                <div style="font-weight:bold; margin-bottom:10px;">طلب تصميم</div>
+                <div style="font-weight:bold; font-size:1.2rem; margin-bottom:10px;">طلب تصميم</div>
                 <button class="add-btn" onclick="addToCart('طلب تصميم')">إضافة للسلة</button>
             </div>
+
             <div class="product-card">
                 <img src="learn_order.png.PNG" alt="Learn">
-                <div style="font-weight:bold; margin-bottom:10px;">طلب تعليم</div>
+                <div style="font-weight:bold; font-size:1.2rem; margin-bottom:10px;">طلب تعليم</div>
                 <button class="add-btn" onclick="addToCart('طلب تعليم')">إضافة للسلة</button>
             </div>
-            <button class="home-btn" style="background:#eee; color:#333;" onclick="showHome()">رجوع</button>
         </div>
     </div>
 
     <div class="overlay" id="overlay"></div>
 
     <div id="cart-popup">
-        <h3 style="text-align:center;">سلة المشتريات</h3>
-        <div id="cart-list" style="margin-bottom:20px;"></div>
+        <h3 style="text-align:center; margin-top:0;">سلة المشتريات</h3>
+        <div id="cart-list" style="margin-bottom:20px; max-height: 200px; overflow-y: auto;"></div>
         <button class="btn-main" onclick="processPurchase()">إتمام الشراء</button>
-        <button class="btn-main" style="background:#eee; color:#333;" onclick="closeAll()">إلغاء</button>
+        <button class="btn-main" style="background:#f5f5f5; color:#333;" onclick="closeAll()">رجوع</button>
     </div>
 
     <div id="invoice">
         <div style="text-align:center; margin-bottom:15px;">
             <h2 style="margin:0; color:var(--primary-blue);">فاتورة الشراء</h2>
-            <small style="opacity:0.6;">صور الشاشة وأرسلها في التكت</small>
+            <small style="opacity:0.7;">صور الشاشة وأرسلها في التكت</small>
         </div>
         <div id="invoice-items" style="border-top:1px dashed #444; padding-top:15px; margin-bottom:20px; text-align:right;"></div>
         <button class="btn-main" onclick="showRating()">تم التصوير (إغلاق)</button>
     </div>
 
     <div id="rating-popup">
-        <h3 style="margin:0;">تقييمك يهمنا ⭐</h3>
-        <p style="font-size:0.8rem; color:#666;">كيف كانت تجربة طلبك؟</p>
-        <div style="color: #f1c40f; font-size: 1.5rem; margin: 15px 0;">⭐⭐⭐⭐⭐</div>
+        <h3 style="margin-top:0; text-align:center;">رأيك يهمنا ⭐</h3>
+        <div class="stars-container" id="stars-row">
+            <span onclick="setRating(1)">☆</span><span onclick="setRating(2)">☆</span><span onclick="setRating(3)">☆</span><span onclick="setRating(4)">☆</span><span onclick="setRating(5)">☆</span>
+        </div>
+        <textarea placeholder="اكتب رأيك هنا مثل TX..." class="opinion-input" id="opinion-text"></textarea>
         <button class="btn-main" onclick="finishAll()">إرسال التقييم</button>
     </div>
 
     <script>
         let cart = [];
-        function showProducts() { document.getElementById('home-section').style.display='none'; document.getElementById('products-section').style.display='block'; window.scrollTo(0,0); }
-        function showHome() { document.getElementById('products-section').style.display='none'; document.getElementById('home-section').style.display='block'; }
-        
+        let currentRating = 0;
+
         function addToCart(name) {
             cart.push(name);
             document.getElementById('cart-count').innerText = cart.length;
@@ -139,7 +146,10 @@
 
         function openCart() {
             if(cart.length === 0) return alert('السلة فارغة!');
-            document.getElementById('cart-list').innerHTML = cart.map(item => `<div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span>${item}</span><b>حسب الطلب</b></div>`).join('');
+            document.getElementById('cart-list').innerHTML = cart.map(item => `
+                <div style="display:flex; justify-content:space-between; padding: 8px 0; border-bottom: 1px solid #eee;">
+                    <span>${item}</span><b>حسب الطلب</b>
+                </div>`).join('');
             document.getElementById('cart-popup').style.display = 'block';
             document.getElementById('overlay').style.display = 'block';
         }
@@ -155,19 +165,26 @@
             document.getElementById('rating-popup').style.display = 'block';
         }
 
+        function setRating(rating) {
+            currentRating = rating;
+            const stars = document.querySelectorAll('.stars-container span');
+            stars.forEach((star, index) => {
+                star.innerHTML = (index < rating) ? '⭐' : '☆';
+                star.style.opacity = (index < rating) ? '1' : '0.4';
+            });
+        }
+
         function finishAll() {
-            alert('شكراً لتقييمك! سيتم توجيهك للرئيسية.');
-            cart = [];
+            alert('تم استلام تقييمك بنجاح! شكراً لك.');
+            cart = []; currentRating = 0;
+            document.getElementById('opinion-text').value = '';
             document.getElementById('cart-count').innerText = '0';
             closeAll();
-            showHome();
+            window.scrollTo(0,0);
         }
 
         function closeAll() {
-            document.getElementById('cart-popup').style.display = 'none';
-            document.getElementById('invoice').style.display = 'none';
-            document.getElementById('rating-popup').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
+            document.querySelectorAll('#cart-popup, #invoice, #rating-popup, #overlay').forEach(el => el.style.display = 'none');
         }
     </script>
 </body>
