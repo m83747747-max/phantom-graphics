@@ -15,69 +15,73 @@
             font-family: var(--main-font); margin: 0; padding: 0; direction: rtl;
         }
 
+        /* الهيدر: اسم | لوجو بالمنتصف | سلة */
         .header {
             background: rgba(255, 255, 255, 0.9); padding: 10px 20px;
-            display: flex; justify-content: space-between; align-items: center;
+            display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
             position: fixed; top: 0; width: 100%; z-index: 1000; box-sizing: border-box;
+            border-bottom: 1px solid #eee;
         }
 
-        .cart-icon { position: relative; cursor: pointer; font-size: 1.4rem; }
+        .header h1 { font-size: 0.9rem; color: var(--primary-blue); margin: 0; text-align: right; }
+        .header-logo { width: 40px; height: 40px; object-fit: contain; }
+        .cart-wrapper { text-align: left; display: flex; justify-content: flex-end; }
+        .cart-icon { position: relative; cursor: pointer; font-size: 1.3rem; color: #333; }
         .cart-count {
             position: absolute; top: -5px; right: -10px;
             background: var(--primary-blue); color: white;
             border-radius: 50%; padding: 2px 6px; font-size: 0.7rem;
         }
 
-        .main-container { margin-top: 80px; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        .main-container { margin-top: 100px; padding: 20px; display: flex; flex-direction: column; align-items: center; }
 
-        .logo-container { text-align: center; width: 100%; margin-bottom: 20px; }
-        .main-logo { width: 120px; filter: drop-shadow(0 0 10px rgba(255,255,255,0.3)); }
+        /* قسم الترحيب المسترجع */
+        #home-section { text-align: center; color: white; width: 100%; margin-top: 20px; }
+        .welcome-title { 
+            font-size: 1.8rem; font-weight: bold; margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
 
-        #home-section { text-align: center; color: white; }
         .home-btn {
             display: block; width: 100%; max-width: 280px; background: white; color: var(--primary-blue);
             border: none; padding: 14px; margin: 12px auto; border-radius: 12px; font-weight: bold; cursor: pointer; text-decoration: none; font-family: var(--main-font);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
+        /* المنتجات عامودية */
         #products-section { display: none; width: 100%; max-width: 400px; }
         .product-card {
             background: rgba(255, 255, 255, 0.95); border-radius: 18px; padding: 15px; margin-bottom: 20px;
             display: flex; flex-direction: column; align-items: center; text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
         .product-card img { width: 100%; border-radius: 12px; margin-bottom: 15px; }
-        .product-info { color: #333; margin-bottom: 15px; }
-        .add-btn { background: var(--primary-blue); color: white; border: none; width: 100%; padding: 10px; border-radius: 10px; cursor: pointer; font-family: var(--main-font); font-weight: bold; }
+        .add-btn { background: var(--primary-blue); color: white; border: none; width: 100%; padding: 12px; border-radius: 10px; cursor: pointer; font-family: var(--main-font); font-weight: bold; }
 
-        /* النوافذ المنبثقة */
+        /* النوافذ الاحترافية */
         .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1100; }
-        
-        #cart-popup, #invoice, #rating-popup {
+        #invoice, #rating-popup, #cart-popup {
             display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
             width: 85%; max-width: 320px; border-radius: 20px; z-index: 1200; padding: 25px; box-sizing: border-box;
         }
-
-        #cart-popup { background: white; color: #333; }
         #invoice { background: #121212; color: white; border: 1px solid #333; }
-        #rating-popup { background: white; color: #333; text-align: center; }
-
-        .stars-input { color: #f1c40f; font-size: 1.5rem; cursor: pointer; margin: 15px 0; }
+        #cart-popup, #rating-popup { background: white; color: #333; }
         .btn-main { width: 100%; background: var(--primary-blue); border: none; color: white; padding: 12px; border-radius: 10px; cursor: pointer; font-weight: bold; font-family: var(--main-font); margin-top: 10px; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div class="cart-icon" onclick="openCart()">🛒 <span class="cart-count" id="cart-count">0</span></div>
-        <h1 style="font-size: 1.1rem; color: var(--primary-blue); margin:0;">PhanTom Graphics</h1>
+        <h1>PhanTom Graphics</h1>
+        <img src="logo.png.PNG" alt="Logo" class="header-logo">
+        <div class="cart-wrapper">
+            <div class="cart-icon" onclick="openCart()">🛒 <span class="cart-count" id="cart-count">0</span></div>
+        </div>
     </div>
 
     <div class="main-container">
-        <div class="logo-container"><img src="logo.png.PNG" alt="Logo" class="main-logo"></div>
-
         <div id="home-section">
-            <h1>PhanTom Graphics</h1>
-            <p>الأفضل بأرخص الأسعار</p>
+            <div class="welcome-title">مرحباً بك في Phantom Graphics</div>
+            <p style="font-weight: bold;">الأفضل بأرخص الأسعار</p>
             <button class="home-btn" onclick="showProducts()">تصفح المنتجات</button>
             <a href="https://discord.gg/U3jW9U3N3" target="_blank" class="home-btn">انضم للديسكورد</a>
         </div>
@@ -85,12 +89,12 @@
         <div id="products-section">
             <div class="product-card">
                 <img src="design_order.png.PNG" alt="Design">
-                <div class="product-info"><div style="font-weight:bold;">طلب تصميم</div><div style="color:var(--primary-blue);">حسب الطلب</div></div>
+                <div style="font-weight:bold; margin-bottom:10px;">طلب تصميم</div>
                 <button class="add-btn" onclick="addToCart('طلب تصميم')">إضافة للسلة</button>
             </div>
             <div class="product-card">
                 <img src="learn_order.png.PNG" alt="Learn">
-                <div class="product-info"><div style="font-weight:bold;">طلب تعليم</div><div style="color:var(--primary-blue);">حسب الطلب</div></div>
+                <div style="font-weight:bold; margin-bottom:10px;">طلب تعليم</div>
                 <button class="add-btn" onclick="addToCart('طلب تعليم')">إضافة للسلة</button>
             </div>
             <button class="home-btn" style="background:#eee; color:#333;" onclick="showHome()">رجوع</button>
@@ -109,23 +113,22 @@
     <div id="invoice">
         <div style="text-align:center; margin-bottom:15px;">
             <h2 style="margin:0; color:var(--primary-blue);">فاتورة الشراء</h2>
-            <small style="opacity:0.6;">صور الشاشة للإرسال</small>
+            <small style="opacity:0.6;">صور الشاشة وأرسلها في التكت</small>
         </div>
-        <div id="invoice-items" style="border-top:1px dashed #444; padding-top:10px; margin-bottom:20px;"></div>
+        <div id="invoice-items" style="border-top:1px dashed #444; padding-top:15px; margin-bottom:20px; text-align:right;"></div>
         <button class="btn-main" onclick="showRating()">تم التصوير (إغلاق)</button>
     </div>
 
     <div id="rating-popup">
-        <h3 style="margin:0;">كيف كانت تجربتك؟</h3>
-        <p style="font-size:0.8rem; color:#666;">تقييمك يهمنا لتطوير خدماتنا</p>
-        <div class="stars-input">⭐⭐⭐⭐⭐</div>
-        <textarea placeholder="اكتب رأيك هنا (اختياري)" style="width:100%; border:1px solid #eee; border-radius:10px; padding:10px; font-family:var(--main-font);"></textarea>
+        <h3 style="margin:0;">تقييمك يهمنا ⭐</h3>
+        <p style="font-size:0.8rem; color:#666;">كيف كانت تجربة طلبك؟</p>
+        <div style="color: #f1c40f; font-size: 1.5rem; margin: 15px 0;">⭐⭐⭐⭐⭐</div>
         <button class="btn-main" onclick="finishAll()">إرسال التقييم</button>
     </div>
 
     <script>
         let cart = [];
-        function showProducts() { document.getElementById('home-section').style.display='none'; document.getElementById('products-section').style.display='block'; }
+        function showProducts() { document.getElementById('home-section').style.display='none'; document.getElementById('products-section').style.display='block'; window.scrollTo(0,0); }
         function showHome() { document.getElementById('products-section').style.display='none'; document.getElementById('home-section').style.display='block'; }
         
         function addToCart(name) {
