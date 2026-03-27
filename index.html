@@ -13,131 +13,253 @@
             background-size: cover; background-position: center; background-attachment: fixed;
             font-family: var(--main-font); margin: 0; padding: 0; direction: rtl;
         }
+
+        /* الهيدر المتجاوب */
         .header {
             background: rgba(255, 255, 255, 0.95); padding: 10px 5%;
             display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
-            position: fixed; top: 0; width: 100%; z-index: 1000; border-bottom: 1px solid #eee;
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            border-bottom: 1px solid #eee; backdrop-filter: blur(5px);
         }
-        .header h1 { font-size: 0.9rem; color: var(--primary-blue); margin: 0; }
-        .header-logo { width: 40px; height: 40px; object-fit: contain; }
-        .main-container { margin-top: 80px; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        .header h1 { font-size: clamp(0.8rem, 3vw, 1.1rem); color: var(--primary-blue); margin: 0; text-align: right; }
+        .header-logo { width: clamp(35px, 10vw, 50px); height: auto; object-fit: contain; }
+        .cart-icon { font-size: 1.4rem; cursor: pointer; color: #333; text-align: left; }
+
+        .main-container { width: 100%; max-width: 1200px; margin: 80px auto 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+
+        /* ستايل الصفحات منفصلة */
         .page-section { display: none; width: 100%; max-width: 500px; text-align: center; color: white; }
-        #home-section { display: block; }
+        #home-section { display: block; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; } /* الرئيسية تظهر أولاً */
+
+        /* الأزرار الزرقاء في الرئيسية */
         .home-btn {
-            display: block; width: 100%; max-width: 280px; background: white; color: var(--primary-blue);
-            border: none; padding: 14px; margin: 12px auto; border-radius: 12px; font-weight: bold; cursor: pointer; text-decoration: none; font-family: var(--main-font);
+            display: block; width: 90%; max-width: 300px; background: white; color: var(--primary-blue);
+            border: none; padding: 14px; margin: 10px auto; border-radius: 12px; font-weight: bold; cursor: pointer; text-decoration: none; font-family: var(--main-font); transition: 0.3s;
         }
+        .home-btn:active { transform: scale(0.95); }
+
+        /* كرت التصميم والتعليم (شكل فخم) */
         .order-card { background: rgba(255, 255, 255, 0.98); border-radius: 20px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); color: #333; text-align: right; margin-bottom: 20px; }
         .order-card img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
+        
+        /* تنسيق الفورم (المنيو والكتابة) */
         .form-group { margin-bottom: 12px; }
         label { display: block; font-size: 0.85rem; font-weight: bold; color: #555; margin-bottom: 5px; }
-        select, input, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd; font-family: var(--main-font); font-size: 0.9rem; outline: none; }
+        select, input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd; font-family: var(--main-font); font-size: 0.9rem; outline: none; }
+        textarea { width: 100%; height: 80px; padding: 10px; border-radius: 10px; border: 1px solid #ddd; font-family: var(--main-font); resize: none; margin-top: 5px; }
         .other-input { display: none; margin-top: 8px; }
-        .stars-container { color: #f1c40f; font-size: 2rem; margin: 15px 0; text-align: center; cursor: pointer; }
+
+        /* النجوم والزر الرئيسي */
+        .stars-container { color: #f1c40f; font-size: 2rem; margin: 15px 0; text-align: center; cursor: pointer; display: flex; justify-content: center; gap: 5px; }
         .submit-btn { background: var(--primary-blue); color: white; border: none; width: 100%; padding: 15px; border-radius: 12px; cursor: pointer; font-weight: bold; font-family: var(--main-font); font-size: 1rem; }
+        
         .back-btn { display: inline-block; background: #eee; color: #333; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.8rem; margin-top: 10px; cursor: pointer; }
+        .discord-link { color: #999; font-size: 0.8rem; text-decoration: none; margin-top: 15px; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h1>PhanTom Graphics</h1>
-        <img src="logo.Png.PNG" class="header-logo">
-        <div style="text-align:left;">🛒</div>
+        <img src="logo.Png.PNG" alt="Logo" class="header-logo">
+        <div class="cart-icon">🛒</div>
     </div>
 
     <div class="main-container">
+
         <div id="home-section" class="page-section">
-            <h2 class="welcome-title">مرحباً بك في Phantom Graphics</h2>
+            <h2 style="font-size: 2rem; font-weight: bold; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">مرحباً بك في Phantom Graphics</h2>
             <p>الأفضل بأرخص الأسعار</p>
             <button class="home-btn" onclick="showPage('design-section')">تصفح المنتجات (تصميم)</button>
             <button class="home-btn" onclick="showPage('learn-section')">طلب تعليم</button>
+            <a href="https://discord.gg/U3jW9U3N3" target="_blank" class="discord-link">انضم للديسكورد (discord.gg/fvp66pX9)</a>
         </div>
 
         <div id="design-section" class="page-section">
             <div class="order-card">
-                <img src="design_order.png.PNG">
-                <div class="form-group"><label>اسم السيرفر:</label><input type="text" id="d-server"></div>
+                <img src="design_order.png.PNG" alt="Design">
+                <h3 style="text-align:center; margin-top:0;">تقديم طلب تصميم جديد</h3>
+                
+                <div class="form-group"><label>اسم السيرفر:</label><input type="text" id="d-server" placeholder="مثلاً: سيرفر فانتوم"></div>
+                
                 <div class="form-group">
                     <label>نوع التصميم:</label>
                     <select id="d-type" onchange="toggleOther(this, 'd-other-type')">
-                        <option>واقعية</option><option>شوب</option><option>جرافيك</option><option>كود</option><option value="أخرى">أخرى</option>
+                        <option value="واقعية">واقعية</option>
+                        <option value="شوب">شوب</option>
+                        <option value="جرافيك">جرافيك</option>
+                        <option value="كود">كود</option>
+                        <option value="أخرى">أخرى</option>
                     </select>
-                    <input type="text" id="d-other-type" class="other-input" placeholder="اذكر النوع">
+                    <input type="text" id="d-other-type" class="other-input" placeholder="اذكر النوع الذي تريده">
                 </div>
-                <div class="form-group"><label>اللوقو:</label><select id="d-logo"><option>متحرك</option><option>ثابت</option></select></div>
-                <div class="form-group"><label>بنر:</label><select id="d-banner"><option>متحرك</option><option>ثابت</option></select></div>
-                <div class="form-group"><label>خط:</label><select id="d-font"><option>متحرك</option><option>ثابت</option></select></div>
-                <div class="form-group"><label>اختصار السيرفر:</label><input type="text" id="d-short"></div>
+
+                <div class="form-group"><label>اللوقو:</label><select id="d-logo"><option value="متحرك">متحرك</option><option value="ثابت">ثابت</option></select></div>
+                <div class="form-group"><label>بنر:</label><select id="d-banner"><option value="متحرك">متحرك</option><option value="ثابت">ثابت</option></select></div>
+                <div class="form-group"><label>خط:</label><select id="d-font"><option value="متحرك">متحرك</option><option value="ثابت">ثابت</option></select></div>
                 
+                <div class="form-group"><label>اختصار السيرفر:</label><input type="text" id="d-short" placeholder="مثلاً: PT"></div>
+
+                <div class="form-group">
+                    <label>صور الإعلانات (ثابتة/متحركة):</label>
+                    <select id="d-ads"><option value="متحرك">متحرك</option><option value="ثابت">ثابت</option></select>
+                </div>
+                <div class="form-group">
+                    <label>صور الإنفو (ثابتة/متحركة):</label>
+                    <select id="d-info"><option value="متحرك">متحرك</option><option value="ثابت">ثابت</option></select>
+                </div>
+                <div class="form-group">
+                    <label>صور البوتات (ثابتة/متحركة):</label>
+                    <select id="d-bots"><option value="متحرك">متحرك</option><option value="ثابت">ثابت</option></select>
+                </div>
+
+                <div class="form-group">
+                    <label>اكتب رأيك بالخدمة للتصوير 👇</label>
+                    <textarea placeholder="اكتب رأيك هنا... (اختياري)" id="d-rev"></textarea>
+                </div>
+
                 <div class="stars-container" id="d-stars">
                     <span onclick="rate('d', 1)">☆</span><span onclick="rate('d', 2)">☆</span><span onclick="rate('d', 3)">☆</span><span onclick="rate('d', 4)">☆</span><span onclick="rate('d', 5)">☆</span>
                 </div>
-                <button class="submit-btn" onclick="sendToDiscord('design')">إرسال طلب التصميم 🚀</button>
+                
+                <button class="submit-btn" id="submit-btn-d" onclick="sendToDiscord('design')">إرسال للتصوير للديسكورد 🚀</button>
             </div>
-            <div class="back-btn" onclick="showPage('home-section')">رجوع</div>
+            <div class="back-btn" onclick="showPage('home-section')">رجوع للرئيسية</div>
         </div>
 
         <div id="learn-section" class="page-section">
             <div class="order-card">
-                <img src="learn_order.png.PNG">
+                <img src="learn_order.png.PNG" alt="Learn">
+                <h3 style="text-align:center; margin-top:0;">تقديم طلب تعليم</h3>
+                
                 <div class="form-group">
-                    <label>مستواك:</label>
-                    <select id="l-level"><option>لا تعرف</option><option>مبتدئ</option><option>متوسط</option><option>متقدم</option></select>
-                </div>
-                <div class="form-group">
-                    <label>التخصص:</label>
-                    <select id="l-type" onchange="toggleOther(this, 'l-other-type')">
-                        <option>واقعية</option><option>شوب</option><option>جرافيك</option><option>كود</option><option value="أخرى">أخرى</option>
+                    <label>مستواك بالتخصص الذي تريده:</label>
+                    <select id="l-level">
+                        <option value="لا تعرف أبداً">لا تعرف أبداً</option>
+                        <option value="مستجد">مستجد</option>
+                        <option value="مبتدئ">مبتدئ</option>
+                        <option value="متوسط">متوسط</option>
+                        <option value="متقدم">متقدم</option>
                     </select>
-                    <input type="text" id="l-other-type" class="other-input" placeholder="اذكر التخصص">
                 </div>
+
+                <div class="form-group">
+                    <label>التخصص الذي تريد تعلمه:</label>
+                    <select id="l-type" onchange="toggleOther(this, 'l-other-special')">
+                        <option value="واقعية">واقعية</option>
+                        <option value="شوب">شوب</option>
+                        <option value="جرافيك">جرافيك</option>
+                        <option value="كود">كود</option>
+                        <option value="أخرى">أخرى</option>
+                    </select>
+                    <input type="text" id="l-other-special" class="other-input" placeholder="اذكر التخصص الذي تبيه">
+                </div>
+
+                <div class="form-group">
+                    <label>اكتب رأيك بالخدمة للتصوير 👇</label>
+                    <textarea placeholder="اكتب رأيك هنا... (اختياري)" id="l-rev"></textarea>
+                </div>
+
                 <div class="stars-container" id="l-stars">
                     <span onclick="rate('l', 1)">☆</span><span onclick="rate('l', 2)">☆</span><span onclick="rate('l', 3)">☆</span><span onclick="rate('l', 4)">☆</span><span onclick="rate('l', 5)">☆</span>
                 </div>
-                <button class="submit-btn" onclick="sendToDiscord('learn')">إرسال طلب التعليم 🚀</button>
+                
+                <button class="submit-btn" id="submit-btn-l" onclick="sendToDiscord('learn')">إرسال للتصوير للديسكورد 🚀</button>
             </div>
-            <div class="back-btn" onclick="showPage('home-section')">رجوع</div>
+            <div class="back-btn" onclick="showPage('home-section')">رجوع للرئيسية</div>
         </div>
+
     </div>
 
     <script>
-        const WEBHOOK_URL = "https://discord.com/api/webhooks/1486873204151685281/5ysQrKoBlgAf2VMejK_rEPf1BFK9jvCChr100hIKxWkG8mq3YKs1sWxWsTbkUfHo6wuq";
+        // رابط الويب هوك الخاص بك شغال وتمام
+        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1486873204151685281/5ysQrKoBlgAf2VMejK_rEPf1BFK9jvCChr100hIKxWkG8mq3YKs1sWxWsTbkUfHo6wuq";
 
-        function showPage(id) {
-            document.querySelectorAll('.page-section').forEach(p => p.style.display = 'none');
-            document.getElementById(id).style.display = 'block';
+        // دالة التنقل بين الصفحات
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(page => page.style.display = 'none');
+            document.getElementById(pageId).style.display = 'block';
             window.scrollTo(0, 0);
         }
 
-        function toggleOther(s, id) { document.getElementById(id).style.display = (s.value === 'أخرى') ? 'block' : 'none'; }
-
-        let ratings = { d: 0, l: 0 };
-        function rate(sec, n) {
-            ratings[sec] = n;
-            const spans = document.getElementById(sec + '-stars').querySelectorAll('span');
-            spans.forEach((s, i) => s.innerHTML = (i < n) ? '⭐' : '☆');
+        // دالة إظهار وإخفاء حقل "أخرى"
+        function toggleOther(selectElement, otherInputId) {
+            document.getElementById(otherInputId).style.display = (selectElement.value === 'أخرى') ? 'block' : 'none';
         }
 
-        async function sendToDiscord(mode) {
-            let content = "";
-            if(mode === 'design') {
+        // دالة النجوم التفاعلية (مع تمييز أي قسم)
+        const ratings = { d: 0, l: 0 }; 
+        function rate(section, n) {
+            ratings[section] = n;
+            const starBox = document.getElementById(section + '-stars');
+            const spans = starBox.querySelectorAll('span');
+            spans.forEach((s, i) => {
+                s.innerHTML = (i < n) ? '⭐' : '☆';
+                s.style.opacity = (i < n) ? '1' : '0.4';
+            });
+        }
+
+        // دالة الإرسال للديسكورد
+        async function sendToDiscord(section) {
+            const btn = document.getElementById('submit-btn-' + (section === 'design' ? 'd' : 'l'));
+            btn.disabled = true;
+            btn.innerText = "جاري الإرسال...";
+
+            let embedMsg = {
+                username: "PhanTomGraphics",
+                embeds: [{
+                    color: 3447003, // أزرق
+                    footer: { text: "PhanTom Graphics Store" },
+                    timestamp: new Date()
+                }]
+            };
+
+            // تجهيز البيانات حسب القسم
+            if (section === 'design') {
                 const srv = document.getElementById('d-server').value;
-                if(!srv) return alert('اكتب اسم السيرفر');
-                content = `🎨 **طلب تصميم جديد!**\n🏰 السيرفر: ${srv}\n⭐ التقييم: ${ratings.d} نجوم`;
+                const other = document.getElementById('d-other-type').value;
+                if(!srv) return alert('يا الغالي اكتب اسم السيرفر!');
+
+                embedMsg.embeds[0].title = "📥 تفاصيل طلب التصميم للتصوير";
+                embedMsg.embeds[0].fields = [
+                    { name: "🏰 اسم السيرفر", value: srv, inline: true },
+                    { name: "🎨 نوع التصميم", value: (document.getElementById('d-type').value === 'أخرى') ? other : document.getElementById('d-type').value, inline: true },
+                    { name: "🖼️ اللوقو", value: document.getElementById('d-logo').value, inline: true },
+                    { name: "🚩 البنر", value: document.getElementById('d-banner').value, inline: true },
+                    { name: "✍️ الخط", value: document.getElementById('d-font').value, inline: true },
+                    { name: "🆔 الاختصار", value: document.getElementById('d-short').value || "لا يوجد", inline: true },
+                    // إضافة بيانات الإعلانات والانفو والبوتات
+                    { name: "📷 الإعلانات", value: document.getElementById('d-ads').value, inline: true },
+                    { name: "📰 الإنفو", value: document.getElementById('d-info').value, inline: true },
+                    { name: "🤖 البوتات", value: document.getElementById('d-bots').value, inline: true },
+                    
+                    { name: "⭐ التقييم", value: ratings.d + " نجوم", inline: false },
+                    { name: "💬 الرأي", value: document.getElementById('d-rev').value || "لا يوجد", inline: false }
+                ];
             } else {
-                content = `📚 **طلب تعليم جديد!**\n🎓 المستوى: ${document.getElementById('l-level').value}\n⭐ التقييم: ${ratings.l} نجوم`;
+                const other = document.getElementById('l-other-special').value;
+                embedMsg.embeds[0].title = "📥 تفاصيل طلب التعليم للتصوير";
+                embedMsg.embeds[0].fields = [
+                    { name: "🎓 المستوى", value: document.getElementById('l-level').value, inline: true },
+                    { name: "🎓 التخصص", value: (document.getElementById('l-type').value === 'أخرى') ? other : document.getElementById('l-type').value, inline: true },
+                    { name: "⭐ التقييم", value: ratings.l + " نجوم", inline: false },
+                    { name: "💬 الرأي", value: document.getElementById('l-rev').value || "لا يوجد", inline: false }
+                ];
             }
 
             try {
-                await fetch(WEBHOOK_URL, {
+                await fetch(DISCORD_WEBHOOK_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ content: "@everyone " + content })
+                    body: JSON.stringify(embedMsg)
                 });
-                alert('تم الإرسال بنجاح ✅');
-                showPage('home-section');
-            } catch (e) { alert('خطأ في الإرسال'); }
+                alert('تم إرسال طلبك للديسكورد بنجاح! صور الشاشة افتح تكت وأرسله في التكت✅');
+                window.location.reload(); 
+            } catch (err) {
+                alert('حدث خطأ في الإرسال، تأكد من اتصالك بالإنترنت');
+                btn.disabled = false;
+                btn.innerText = "إرسال للديسكورد 🚀";
+            }
         }
     </script>
 </body>
