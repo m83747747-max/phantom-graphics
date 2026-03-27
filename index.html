@@ -100,9 +100,9 @@
                 
                 <div class="form-group"><label>اختصار السيرفر:</label><input type="text" id="d-short" placeholder="مثلاً: PT"></div>
 
-                <div class="form-group"><label>صور الإعلانات (ثابتة/متحركة):</label><input type="text" id="d-ads"></div>
-                <div class="form-group"><label>صور الإنفو (ثابتة/متحركة):</label><input type="text" id="d-info"></div>
-                <div class="form-group"><label>صور البوتات (ثابتة/متحركة):</label><input type="text" id="d-bots"></div>
+                <div class="form-group"><label>صور الإعلانات</label><input type="text" id="d-ads"></div>
+                <div class="form-group"><label>صور الإنفو</label><input type="text" id="d-info"></div>
+                <div class="form-group"><label>صور البوتات</label><input type="text" id="d-bots"></div>
 
                 <div class="form-group">
                     <label>اكتب رأيك بالخدمة للتصوير 👇</label>
@@ -113,7 +113,7 @@
                     <span onclick="rate('d', 1)">☆</span><span onclick="rate('d', 2)">☆</span><span onclick="rate('d', 3)">☆</span><span onclick="rate('d', 4)">☆</span><span onclick="rate('d', 5)">☆</span>
                 </div>
                 
-                <button class="submit-btn" id="submit-btn-d" onclick="sendToDiscord('design')">إرسال للتصوير للديسكورد 🚀</button>
+                <button class="submit-btn" id="submit-btn-d" onclick="sendToDiscord('design')">إرسال للديسكورد </button>
             </div>
             <div class="back-btn" onclick="showPage('home-section')">رجوع للرئيسية</div>
         </div>
@@ -155,7 +155,7 @@
                     <span onclick="rate('l', 1)">☆</span><span onclick="rate('l', 2)">☆</span><span onclick="rate('l', 3)">☆</span><span onclick="rate('l', 4)">☆</span><span onclick="rate('l', 5)">☆</span>
                 </div>
                 
-                <button class="submit-btn" id="submit-btn-l" onclick="sendToDiscord('learn')">إرسال للتصوير للديسكورد 🚀</button>
+                <button class="submit-btn" id="submit-btn-l" onclick="sendToDiscord('learn')">إرسال للديسكورد </button>
             </div>
             <div class="back-btn" onclick="showPage('home-section')">رجوع للرئيسية</div>
         </div>
@@ -244,12 +244,12 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(embedMsg)
                 });
-                alert('تم إرسال طلبك للتصوير للديسكورد بنجاح! صور الشاشة وافتح تكت وأرسله في التكت ✅');
+                alert('تم إرسال طلبك للتصوير للديسكورد بنجاح! صور الشاشة وافتح تكت وأرسله  وارسله في التكت ✅');
                 window.location.reload(); 
             } catch (err) {
                 alert('حدث خطأ في الإرسال، تأكد من اتصالك بالإنترنت');
                 btn.disabled = false;
-                btn.innerText = "إرسال للديسكورد 🚀";
+                btn.innerText = "إرسال للديسكورد ";
             }
         }
     </script>
