@@ -33,7 +33,7 @@
 
         /* الأزرار الزرقاء في الرئيسية */
         .home-btn {
-            display: block; width: 90%; max-width: 300px; background: white; color: var(--primary-blue);
+            display: block; width: 90%; max-width: 300px; background: var(--primary-blue); color: white;
             border: none; padding: 14px; margin: 10px auto; border-radius: 12px; font-weight: bold; cursor: pointer; text-decoration: none; font-family: var(--main-font); transition: 0.3s;
         }
         .home-btn:active { transform: scale(0.95); }
@@ -70,7 +70,7 @@
         <div id="home-section" class="page-section">
             <h2 style="font-size: 2rem; font-weight: bold; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">مرحباً بك في Phantom Graphics</h2>
             <p>الأفضل بأرخص الأسعار</p>
-            <button class="home-btn" onclick="showPage('design-section')">تصفح المنتجات (تصميم)</button>
+            <button class="home-btn" onclick="showPage('design-section')">طلب تصميم</button>
             <button class="home-btn" onclick="showPage('learn-section')">طلب تعليم</button>
             <a href="https://discord.gg/U3jW9U3N3" target="_blank" class="discord-link">انضم للديسكورد (discord.gg/fvp66pX9)</a>
         </div>
@@ -100,18 +100,9 @@
                 
                 <div class="form-group"><label>اختصار السيرفر:</label><input type="text" id="d-short" placeholder="مثلاً: PT"></div>
 
-                <div class="form-group">
-                    <label>صور الإعلانات (ثابتة/متحركة):</label>
-                    <select id="d-ads"><option value="متحرك">متحرك</option><option value="ثابت">ثابت</option></select>
-                </div>
-                <div class="form-group">
-                    <label>صور الإنفو (ثابتة/متحركة):</label>
-                    <select id="d-info"><option value="متحرك">متحرك</option><option value="ثابت">ثابت</option></select>
-                </div>
-                <div class="form-group">
-                    <label>صور البوتات (ثابتة/متحركة):</label>
-                    <select id="d-bots"><option value="متحرك">متحرك</option><option value="ثابت">ثابت</option></select>
-                </div>
+                <div class="form-group"><label>صور الإعلانات (ثابتة/متحركة):</label><input type="text" id="d-ads"></div>
+                <div class="form-group"><label>صور الإنفو (ثابتة/متحركة):</label><input type="text" id="d-info"></div>
+                <div class="form-group"><label>صور البوتات (ثابتة/متحركة):</label><input type="text" id="d-bots"></div>
 
                 <div class="form-group">
                     <label>اكتب رأيك بالخدمة للتصوير 👇</label>
@@ -228,10 +219,10 @@
                     { name: "🚩 البنر", value: document.getElementById('d-banner').value, inline: true },
                     { name: "✍️ الخط", value: document.getElementById('d-font').value, inline: true },
                     { name: "🆔 الاختصار", value: document.getElementById('d-short').value || "لا يوجد", inline: true },
-                    // إضافة بيانات الإعلانات والانفو والبوتات
-                    { name: "📷 الإعلانات", value: document.getElementById('d-ads').value, inline: true },
-                    { name: "📰 الإنفو", value: document.getElementById('d-info').value, inline: true },
-                    { name: "🤖 البوتات", value: document.getElementById('d-bots').value, inline: true },
+                    // إضافة بيانات الإعلانات والانفو والبوتات ككتابة
+                    { name: "📷 الإعلانات", value: document.getElementById('d-ads').value || "غير محدد", inline: true },
+                    { name: "📰 الإنفو", value: document.getElementById('d-info').value || "غير محدد", inline: true },
+                    { name: "🤖 البوتات", value: document.getElementById('d-bots').value || "غير محدد", inline: true },
                     
                     { name: "⭐ التقييم", value: ratings.d + " نجوم", inline: false },
                     { name: "💬 الرأي", value: document.getElementById('d-rev').value || "لا يوجد", inline: false }
@@ -253,7 +244,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(embedMsg)
                 });
-                alert('تم إرسال طلبك للديسكورد بنجاح! صور الشاشة افتح تكت وأرسله في التكت✅');
+                alert('تم إرسال طلبك للتصوير للديسكورد بنجاح! صور الشاشة وافتح تكت وأرسله في التكت ✅');
                 window.location.reload(); 
             } catch (err) {
                 alert('حدث خطأ في الإرسال، تأكد من اتصالك بالإنترنت');
